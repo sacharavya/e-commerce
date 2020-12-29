@@ -15,7 +15,6 @@ const CartScreen = ({ match, location, history }) => {
   const cart = useSelector((state) => state.cart)
   const { cartItems } = cart
 
-
   useEffect(() => {
     if (productId) {
       dispatch(addToCart(productId, qty))
@@ -97,7 +96,7 @@ const CartScreen = ({ match, location, history }) => {
             <Button
               type='button'
               className='btn-block'
-              disabled={cartItems === 0}
+              disabled={cartItems == 0}
               onClick={checkoutHandler}
             >
               Proceed to Checkout

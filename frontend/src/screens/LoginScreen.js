@@ -66,6 +66,9 @@ const LoginScreen = ({ location, history }) => {
           </Link>
         </Col>
       </Row>
+      <Row className='py-2'>
+        <Col>Adding feature to reset password.</Col>
+      </Row>
     </FormContainer>
   )
 }

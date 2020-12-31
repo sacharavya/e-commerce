@@ -92,6 +92,12 @@ const RegisterScreen = ({ location, history }) => {
           </Link>
         </Col>
       </Row>
+      <Row className='py-3'>
+        <Col>
+          Adding feature to validate email via sending confrmation email to
+          respective email user entered
+        </Col>
+      </Row>
     </FormContainer>
   )
 }

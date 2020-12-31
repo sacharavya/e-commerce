@@ -77,6 +77,17 @@ const CartScreen = ({ match, location, history }) => {
                 </Row>
               </ListGroup.Item>
             ))}
+            <Row>
+              <Col md={12} className='py-3'>
+                <Message>
+                  Want to Shop more? <Link to='/'>Go Home</Link>
+                </Message>
+              </Col>
+            </Row>
+            <Row>
+              <h3>Products You may also like</h3>
+            </Row>
+            <Row>Suggestions here, Feature on development</Row>
           </ListGroup>
         )}
       </Col>

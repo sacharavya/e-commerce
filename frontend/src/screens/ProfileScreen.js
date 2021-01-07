@@ -99,7 +99,9 @@ const ProfileScreen = ({ location, history }) => {
           </Button>
         </Form>
       </Col>
-      <Col md={9}>My Orders</Col>
+      <Col md={9}>
+        <h2>My Orders</h2>
+      </Col>
     </Row>
   )
 }

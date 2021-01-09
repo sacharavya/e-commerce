@@ -25,6 +25,7 @@ const UserListScreen = ({ history }) => {
         history.push('/')
       }
     }
+    // eslint-disable-next-line
   }, [dispatch, history])
 
   const deleteHandler = (id) => {
@@ -67,13 +68,13 @@ const UserListScreen = ({ history }) => {
                 </td>
                 <td>
                   <LinkContainer to={`/user/${user._id}/edit`}>
-                    <Button variant='light' className='btn-sm'>
+                    <Button variant='light' className='btn-sm rounded'>
                       <i className='fas fa-edit'></i>
                     </Button>
                   </LinkContainer>
                   <Button
                     variant='danger'
-                    className='btn-sm'
+                    className='btn-sm rounded'
                     onClick={() => deleteHandler(user._id)}
                   >
                     <i className='fas fa-trash'></i>

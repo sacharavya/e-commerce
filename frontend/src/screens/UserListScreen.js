@@ -38,9 +38,12 @@ const UserListScreen = () => {
               <th></th>
             </tr>
           </thead>
+          {/* {console.log(users)} */}
           <tbody>
             {users.map((user) => (
+              // console.log(user._id, user.name, user.email, user.isAdmin)
               <tr key={user._id}>
+                {console.log(user._id, user.name, user.email, user.isAdmin)}
                 <td>{user._id}</td>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
@@ -56,14 +59,14 @@ const UserListScreen = () => {
                     <Button variant='light' className='btn-sm'>
                       <i className='fas fa-edit'></i>
                     </Button>
-                    <Button
-                      variant='danger'
-                      className='btn-sm'
-                      onClick={() => deleteHandler(user._id)}
-                    >
-                      <i className='fas fa-trash'></i>
-                    </Button>
                   </LinkContainer>
+                  <Button
+                    variant='danger'
+                    className='btn-sm'
+                    onClick={() => deleteHandler(user._id)}
+                  >
+                    <i className='fas fa-trash'></i>
+                  </Button>
                 </td>
               </tr>
             ))}

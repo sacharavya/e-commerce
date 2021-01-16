@@ -69,6 +69,7 @@ const CartScreen = ({ match, location, history }) => {
                     <Button
                       type='button'
                       variant='light'
+                      className='rounded'
                       onClick={() => removeFromCartHandler(item.product)}
                     >
                       <i className='fas fa-trash'></i>
@@ -106,7 +107,7 @@ const CartScreen = ({ match, location, history }) => {
           <ListGroup.Item>
             <Button
               type='button'
-              className='btn-block'
+              className='btn-block rounded'
               // eslint-disable-next-line
               disabled={cartItems == 0}
               onClick={checkoutHandler}

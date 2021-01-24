@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Table, Button, Row, Col } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import {
@@ -38,17 +38,15 @@ const ProductListScreen = ({ history, match }) => {
   useEffect(() => {
     dispatch({ type: PRODUCT_CREATE_RESET })
 
-    if (!userInfo.isAdmin) {
+    if (!userInfo || !userInfo.isAdmin) {
       history.push('/login')
     }
 
     if (successCreate) {
-      history.push(`/admin/products/${createdProduct._id}/edit`)
+      history.push(`/admin/product/${createdProduct._id}/edit`)
     } else {
       dispatch(listProducts())
     }
-
-    // eslint-disable-next-line
   }, [
     dispatch,
     history,
@@ -59,10 +57,11 @@ const ProductListScreen = ({ history, match }) => {
   ])
 
   const deleteHandler = (id) => {
-    if (window.confirm('Are you sure?')) {
+    if (window.confirm('Are you sure')) {
       dispatch(deleteProduct(id))
     }
   }
+
   const createProductHandler = () => {
     dispatch(createProduct())
   }
@@ -79,33 +78,30 @@ const ProductListScreen = ({ history, match }) => {
           </Button>
         </Col>
       </Row>
-      <Row>
-        {loadingDelete && <Loader />}
-        {errorDelete && <Message variant='danger'>{errorDelete}</Message>}
-        {loadingCreate && <Loader />}
-        {errorCreate && <Message variant='danger'>{errorCreate}</Message>}
-        {loading ? (
-          <Loader />
-        ) : error ? (
-          <Message variant='danger'>{error}</Message>
-        ) : (
+      {loadingDelete && <Loader />}
+      {errorDelete && <Message variant='danger'>{errorDelete}</Message>}
+      {loadingCreate && <Loader />}
+      {errorCreate && <Message variant='danger'>{errorCreate}</Message>}
+      {loading ? (
+        <Loader />
+      ) : error ? (
+        <Message variant='danger'>{error}</Message>
+      ) : (
+        <>
           <Table striped bordered hover responsive className='table-sm'>
             <thead>
               <tr>
                 <th>ID</th>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Category</th>
-                <th>Brand</th>
+                <th>NAME</th>
+                <th>PRICE</th>
+                <th>CATEGORY</th>
+                <th>BRAND</th>
                 <th></th>
               </tr>
             </thead>
-            {/* {console.log(users)} */}
             <tbody>
               {products.map((product) => (
-                // console.log(user._id, user.name, user.email, user.isAdmin)
                 <tr key={product._id}>
-                  {/* {console.log(user._id, user.name, user.email, user.isAdmin)} */}
                   <td>{product._id}</td>
                   <td>{product.name}</td>
                   <td>${product.price}</td>
@@ -113,13 +109,13 @@ const ProductListScreen = ({ history, match }) => {
                   <td>{product.brand}</td>
                   <td>
                     <LinkContainer to={`/admin/product/${product._id}/edit`}>
-                      <Button variant='light' className='btn-sm rounded'>
+                      <Button variant='light' className='btn-sm'>
                         <i className='fas fa-edit'></i>
                       </Button>
                     </LinkContainer>
                     <Button
                       variant='danger'
-                      className='btn-sm rounded'
+                      className='btn-sm'
                       onClick={() => deleteHandler(product._id)}
                     >
                       <i className='fas fa-trash'></i>
@@ -129,8 +125,8 @@ const ProductListScreen = ({ history, match }) => {
               ))}
             </tbody>
           </Table>
-        )}
-      </Row>
+        </>
+      )}
     </>
   )
 }

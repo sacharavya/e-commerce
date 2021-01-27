@@ -55,12 +55,9 @@ const UserListScreen = ({ history }) => {
               <th></th>
             </tr>
           </thead>
-          {/* {console.log(users)} */}
           <tbody>
             {users.map((user) => (
-              // console.log(user._id, user.name, user.email, user.isAdmin)
               <tr key={user._id}>
-                {console.log(user._id, user.name, user.email, user.isAdmin)}
                 <td>{user._id}</td>
                 <td>{user.name}</td>
                 <td>{user.email}</td>

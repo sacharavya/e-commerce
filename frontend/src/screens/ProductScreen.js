@@ -97,7 +97,7 @@ const ProductScreen = ({ history, match }) => {
                 </ListGroup.Item>
               </ListGroup>
             </Col>
-            <Col>
+            <Col className='product-page-section'>
               <Card>
                 <ListGroup variant='flush'>
                   <ListGroup.Item>
@@ -143,14 +143,21 @@ const ProductScreen = ({ history, match }) => {
                     </ListGroupItem>
                   )}
                   <ListGroup.Item>
-                    <Button
-                      onClick={addToCartHandler}
-                      className='btn-block rounded'
-                      type='button'
-                      disabled={product.countInStock === 0}
-                    >
-                      Add to Cart
-                    </Button>
+                    {product.countInStock < 1 ? (
+                      <Button className='btn-block rounded' type='button'>
+                        {' '}
+                        Pre-order{' '}
+                      </Button>
+                    ) : (
+                      <Button
+                        onClick={addToCartHandler}
+                        className='btn-block rounded'
+                        type='button'
+                      >
+                        {' '}
+                        Add to Cart{' '}
+                      </Button>
+                    )}
                   </ListGroup.Item>
                 </ListGroup>
               </Card>

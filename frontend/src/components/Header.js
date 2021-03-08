@@ -12,6 +12,9 @@ const Header = () => {
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
 
+  const productList = useSelector((state) => state.productList)
+  const { products } = productList
+
   const logoutHandler = () => {
     dispatch(logout())
   }
@@ -26,11 +29,18 @@ const Header = () => {
           <Navbar.Collapse id='basic-navbar-nav'>
             <Route render={({ history }) => <SearchBox history={history} />} />
             <Nav className='ml-auto'>
-              <LinkContainer to='/cart'>
-                <Nav.Link>
-                  <i className='fas fa-shopping-cart'></i> Cart
-                </Nav.Link>
-              </LinkContainer>
+              {/* <NavDropdown title='Categories' id='categories'>
+                {products.map((product) => (
+                  <LinkContainer to='/'>
+                    <NavDropdown.Item>{product.category}</NavDropdown.Item>
+                  </LinkContainer>
+                ))}
+                {/* {[...Array(product.category).keys()].map((x) => (
+                  <LinkContainer to='/'>
+                    <NavDropdown.Item>Users</NavDropdown.Item>
+                  </LinkContainer>
+                ))} */}
+              {/*</Nav></NavDropdown> */}
               {userInfo && userInfo.isAdmin && (
                 <NavDropdown title='Admin' id='adminmenu'>
                   <LinkContainer to='/admin/userlist'>
@@ -44,6 +54,11 @@ const Header = () => {
                   </LinkContainer>
                 </NavDropdown>
               )}
+              <LinkContainer to='/cart'>
+                <Nav.Link>
+                  <i className='fas fa-shopping-cart'></i> Cart
+                </Nav.Link>
+              </LinkContainer>
               {userInfo ? (
                 <NavDropdown title={userInfo.name} id='username'>
                   <LinkContainer to='/profile'>

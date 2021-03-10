@@ -20,6 +20,8 @@ import {
   ORDER_DELIVER_FAIL,
 } from '../constants/orderConstatnts'
 
+import { CART_RESET } from '../constants/cartConstants'
+
 export const createOrder = (order) => async (dispatch, getState) => {
   try {
     dispatch({
@@ -118,6 +120,7 @@ export const payOrder = (orderId, paymentResult) => async (
       type: ORDER_PAY_SUCCESS,
       payload: data,
     })
+    dispatch({ type: CART_RESET })
   } catch (error) {
     dispatch({
       type: ORDER_PAY_FAIL,

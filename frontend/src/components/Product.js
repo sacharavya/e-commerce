@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Card } from 'react-bootstrap'
 import Rating from './Rating'
 
-const Product = ({ product }) => {
+const Product = ({ product, history, match }) => {
   return (
     <Card className='my-3 p-3 rounded'>
       <Link to={`/product/${product._id}`}>
@@ -23,7 +23,7 @@ const Product = ({ product }) => {
           />
         </Card.Text>
         <Card.Text as='h3' className='py-2'>
-          ${product.price}
+          Rs. {product.price}
         </Card.Text>
       </Card.Body>
     </Card>

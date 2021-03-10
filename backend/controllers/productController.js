@@ -91,6 +91,13 @@ const updateProduct = asyncHandler(async (req, res) => {
     product.category = category
     product.countInStock = countInStock
 
+    if (product.countInStock == 0) {
+      //find all pre-order records for that item
+      //note reference or make list of the users that ordered that product
+      //add new product
+      //email all the people in the list of the product that they pre-ordered that product
+    }
+
     const updatedProduct = await product.save()
     res.status(201).json(updatedProduct)
   } else {

@@ -77,6 +77,14 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
     const updatedOrder = await order.save()
 
     res.json(updatedOrder)
+
+    for (const index in order.orderItems) {
+      const item = order.orderItems[index]
+      const product = await Product.findById(item.product)
+      product.countInStock -= item.qty
+      await product.save()
+    }
+
   } else {
     res.status(404)
     throw new Error('Order not found')
@@ -114,13 +122,6 @@ const updateOrderToDelivered = asyncHandler(async (req, res) => {
     const updatedOrder = await order.save()
 
     res.json(updatedOrder)
-
-    for (const index in order.orderItems) {
-      const item = order.orderItems[index]
-      const product = await Product.findById(item.product)
-      product.countInStock -= item.qty
-      await product.save()
-    }
   } else {
     res.status(404)
     throw new Error('Order not found')

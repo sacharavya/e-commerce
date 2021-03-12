@@ -10,6 +10,25 @@ const Footer = () => {
       <Container>
         <Row>
           <Col className='text-center py-3'>
+            <Row>
+
+            </Row>
+          </Col>
+          <Col className='text-center py-3'>
+            <Row>
+
+            </Row>
+          </Col>
+          <Col className='text-center py-3'>
+            <Row>
+              
+            </Row>
+          </Col>
+        </Row>
+      </Container>
+      <Container>
+        <Row>
+          <Col className='text-center py-3'>
             Copyright &copy; Saurav 2020 - {getYear()}
           </Col>
         </Row>

@@ -71,4 +71,4 @@ const ShippingScreen = ({ history }) => {
   )
 }
 
-export default ShippingScreen
+export default ShippingScreen 

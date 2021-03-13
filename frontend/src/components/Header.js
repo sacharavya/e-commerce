@@ -12,8 +12,8 @@ const Header = () => {
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
 
-  const productList = useSelector((state) => state.productList)
-  const { products } = productList
+  // const productList = useSelector((state) => state.productList)
+  // const { products } = productList
 
   const logoutHandler = () => {
     dispatch(logout())
@@ -61,11 +61,11 @@ const Header = () => {
               </LinkContainer>
               {userInfo ? (
                 <NavDropdown title={userInfo.name} id='username'>
-                  {userInfo && userInfo.isAdmin && (
+                  {/* {userInfo && userInfo.isAdmin && (
                     <LinkContainer to='/admin/dashboard'>
                       <NavDropdown.Item>Dashboard</NavDropdown.Item>
                     </LinkContainer>
-                  )}
+                  )} */}
                   <LinkContainer to='/profile'>
                     <NavDropdown.Item>Profile</NavDropdown.Item>
                   </LinkContainer>

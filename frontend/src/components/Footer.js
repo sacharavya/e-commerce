@@ -25,7 +25,7 @@ const Footer = () => {
           <Col className='text-center py-3'>
             <Row>
               Follow Us on:
-                <ul>
+                <ul className=''>
                   <li>
                     <i className='fab fa-facebook-f'></i>
                   </li>

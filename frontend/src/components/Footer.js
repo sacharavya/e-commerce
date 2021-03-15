@@ -7,6 +7,7 @@ const Footer = () => {
   }
   return (
     <footer>
+<<<<<<< HEAD
         <Row>
           <Col className='text-center py-3'>
             <Row>
@@ -44,6 +45,13 @@ const Footer = () => {
             Copyright &copy; Saurav 2020 - {getYear()}
           </Col>
         </Row>
+=======
+      <Row>
+        <Col className='text-center py-3'>
+          Copyright &copy; Saurav 2020 - {getYear()}
+        </Col>
+      </Row>
+>>>>>>> 919c867fb4c429ad737bf139e77b61f252f002cb
     </footer>
   )
 }

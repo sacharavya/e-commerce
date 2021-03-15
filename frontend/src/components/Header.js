@@ -21,15 +21,14 @@ const Header = () => {
   return (
     <header>
       <Navbar bg='dark' variant='dark' expand='lg' collapseOnSelect>
-        
-          <LinkContainer to='/'>
-            <Navbar.Brand>Sark Enterprises</Navbar.Brand>
-          </LinkContainer>
-          <Navbar.Toggle aria-controls='basic-navbar-nav' />
-          <Navbar.Collapse id='basic-navbar-nav'>
-            <Route render={({ history }) => <SearchBox history={history} />} />
-            <Nav className='ml-auto'>
-              {/* <NavDropdown title='Categories' id='categories'>
+        <LinkContainer to='/'>
+          <Navbar.Brand>Sark Enterprises</Navbar.Brand>
+        </LinkContainer>
+        <Navbar.Toggle aria-controls='basic-navbar-nav' />
+        <Navbar.Collapse id='basic-navbar-nav'>
+          <Route render={({ history }) => <SearchBox history={history} />} />
+          <Nav className='ml-auto'>
+            {/* <NavDropdown title='Categories' id='categories'>
                 {products.map((product) => (
                   <LinkContainer to='/'>
                     <NavDropdown.Item>{product.category}</NavDropdown.Item>
@@ -40,48 +39,48 @@ const Header = () => {
                     <NavDropdown.Item>Users</NavDropdown.Item>
                   </LinkContainer>
                 ))} */}
-              {/*</Nav></NavDropdown> */}
-              {userInfo && userInfo.isAdmin && (
-                <NavDropdown title='Admin' id='adminmenu'>
-                  <LinkContainer to='/admin/userlist'>
-                    <NavDropdown.Item>Users</NavDropdown.Item>
-                  </LinkContainer>
-                  <LinkContainer to='/admin/productlist'>
-                    <NavDropdown.Item>Products</NavDropdown.Item>
-                  </LinkContainer>
-                  <LinkContainer to='/admin/orderlist'>
-                    <NavDropdown.Item>Orders</NavDropdown.Item>
-                  </LinkContainer>
-                </NavDropdown>
-              )}
-              <LinkContainer to='/cart'>
-                <Nav.Link>
-                  <i className='fas fa-shopping-cart'></i> Cart
-                </Nav.Link>
-              </LinkContainer>
-              {userInfo ? (
-                <NavDropdown title={userInfo.name} id='username'>
-                  {/* {userInfo && userInfo.isAdmin && (
+            {/*</Nav></NavDropdown> */}
+            {userInfo && userInfo.isAdmin && (
+              <NavDropdown title='Admin' id='adminmenu'>
+                <LinkContainer to='/admin/userlist'>
+                  <NavDropdown.Item>Users</NavDropdown.Item>
+                </LinkContainer>
+                <LinkContainer to='/admin/productlist'>
+                  <NavDropdown.Item>Products</NavDropdown.Item>
+                </LinkContainer>
+                <LinkContainer to='/admin/orderlist'>
+                  <NavDropdown.Item>Orders</NavDropdown.Item>
+                </LinkContainer>
+              </NavDropdown>
+            )}
+            <LinkContainer to='/cart'>
+              <Nav.Link>
+                <i className='fas fa-shopping-cart'></i> Cart
+              </Nav.Link>
+            </LinkContainer>
+            {userInfo ? (
+              <NavDropdown title={userInfo.name} id='username'>
+                {/* {userInfo && userInfo.isAdmin && (
                     <LinkContainer to='/admin/dashboard'>
                       <NavDropdown.Item>Dashboard</NavDropdown.Item>
                     </LinkContainer>
                   )} */}
-                  <LinkContainer to='/profile'>
-                    <NavDropdown.Item>Profile</NavDropdown.Item>
-                  </LinkContainer>
-                  <NavDropdown.Item onClick={logoutHandler}>
-                    Logout
-                  </NavDropdown.Item>
-                </NavDropdown>
-              ) : (
-                <LinkContainer to='/login'>
-                  <Nav.Link>
-                    <i className='fas fa-user'></i> Sign In
-                  </Nav.Link>
+                <LinkContainer to='/profile'>
+                  <NavDropdown.Item>Profile</NavDropdown.Item>
                 </LinkContainer>
-              )}
-            </Nav>
-          </Navbar.Collapse>
+                <NavDropdown.Item onClick={logoutHandler}>
+                  Logout
+                </NavDropdown.Item>
+              </NavDropdown>
+            ) : (
+              <LinkContainer to='/login'>
+                <Nav.Link>
+                  <i className='fas fa-user'></i> Sign In
+                </Nav.Link>
+              </LinkContainer>
+            )}
+          </Nav>
+        </Navbar.Collapse>
       </Navbar>
     </header>
   )

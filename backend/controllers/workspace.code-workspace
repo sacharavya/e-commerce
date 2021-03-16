@@ -1,0 +1,11 @@
+{
+  "folders": [
+	{
+		"path": "../.."
+	},
+	{
+		"path": "../../../send-mail/multiple-email-sending"
+	}
+],
+  "settings": {}
+}

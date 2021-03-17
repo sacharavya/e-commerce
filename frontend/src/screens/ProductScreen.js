@@ -17,6 +17,7 @@ import {
   listProductDetails,
   createProductReview,
 } from '../actions/productActions'
+import { createPreOrder } from '../actions/preorderActions'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants'
@@ -60,6 +61,21 @@ const ProductScreen = ({ history, match }) => {
       createProductReview(match.params.id, {
         rating,
         comment,
+      })
+    )
+  }
+
+  const preorderHandler = () => {
+    dispatch(
+      createPreOrder({
+        // preorderItem.product: ,
+        //   orderItemsPrice: cart.itemsPrice,
+        //   shippingAddress: cart.shippingAddress,
+        //   paymentMethod: cart.paymentMethod,
+        //   itemsPrice: cart.itemsPrice,
+        //   taxPrice: cart.taxPrice,
+        //   shippingPrice: cart.shippingPrice,
+        //   totalPrice: cart.totalPrice,
       })
     )
   }
@@ -144,7 +160,11 @@ const ProductScreen = ({ history, match }) => {
                   )}
                   <ListGroup.Item>
                     {product.countInStock < 1 ? (
-                      <Button className='btn-block rounded' type='button'>
+                      <Button
+                        onClick={preorderHandler}
+                        className='btn-block rounded'
+                        type='button'
+                      >
                         {' '}
                         Pre-order{' '}
                       </Button>

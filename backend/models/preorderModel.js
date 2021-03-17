@@ -3,14 +3,12 @@ import mongoose from 'mongoose'
 const preorderSchema = mongoose.Schema(
   {
     user: {
-    type: mongoose.Schema.Types.ObjectId,
-    required: true,
-    ref: 'User',
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: 'User',
     },
-  preorderItems: [
-    {
+    preorderItem: {
       name: { type: String, required: true },
-      qty: { type: Number, required: true },
       image: { type: String, required: true },
       price: { type: Number, required: true },
       product: {
@@ -19,14 +17,13 @@ const preorderSchema = mongoose.Schema(
         ref: 'Product',
       },
     },
-  ],
-  preorderdAt:{
-    type: Date,
+    preorderdAt: {
+      type: Date,
+    },
   },
-},
-{
-  timestamps: true,
-}
+  {
+    timestamps: true,
+  }
 )
 
 const Preorder = mongoose.model('Preorder', preorderSchema)

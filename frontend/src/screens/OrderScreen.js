@@ -51,6 +51,7 @@ const OrderScreen = ({ match, history }) => {
       }
       document.body.appendChild(script)
     }
+
     if (!order || successPay || successDeliver) {
       dispatch({ type: ORDER_PAY_RESET })
       dispatch({ type: ORDER_DELIVER_RESET })

@@ -17,6 +17,7 @@ import {
   listProductDetails,
   createProductReview,
 } from '../actions/productActions'
+import { createPreOrder } from '../actions/preorderActions'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants'
@@ -62,6 +63,18 @@ const ProductScreen = ({ history, match }) => {
         comment,
       })
     )
+  }
+
+  const preorderHandler = () => {
+    dispatch(
+      createPreOrder({
+        preorderItems: product.name,
+        preorderItemsPrice: product.price,
+        preorderItemsImage: product.image,
+      })
+    )
+
+    console.log(createPreOrder)
   }
 
   return (
@@ -144,7 +157,11 @@ const ProductScreen = ({ history, match }) => {
                   )}
                   <ListGroup.Item>
                     {product.countInStock < 1 ? (
-                      <Button className='btn-block rounded' type='button'>
+                      <Button
+                        onClick={preorderHandler}
+                        className='btn-block rounded'
+                        type='button'
+                      >
                         {' '}
                         Pre-order{' '}
                       </Button>

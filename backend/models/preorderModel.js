@@ -7,7 +7,7 @@ const preorderSchema = mongoose.Schema(
       required: true,
       ref: 'User',
     },
-    preorderItem: {
+    preorderItems: {
       name: { type: String, required: true },
       image: { type: String, required: true },
       price: { type: Number, required: true },

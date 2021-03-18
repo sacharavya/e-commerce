@@ -14,7 +14,7 @@ import {
 import {
   ORDER_PAY_RESET,
   ORDER_DELIVER_RESET,
-} from '../constants/orderConstatnts'
+} from '../constants/orderConstants'
 
 const OrderScreen = ({ match, history }) => {
   const orderId = match.params.id

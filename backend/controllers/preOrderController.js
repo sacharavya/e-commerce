@@ -5,14 +5,16 @@ import Preorder from '../models/preorderModel.js'
 // @route /api/preorders
 // @access Private
 const addPreOrderItems = asyncHandler(async (req, res) => {
-  const { preorderItems } = req.body
-  if (preorderItems && preorderItems.length === 0) {
+  const { preorderItems, preorderItemPrice, preorderItemImage } = req.body
+  if (preorderItem && preorderItem.length === 0) {
     res.status(400)
     throw new Error('No preorder items')
     return
   } else {
     const preorder = new Preorder({
       preorderItems,
+      preorderItemPrice,
+      preorderItemImage,
       user: req.user._id,
     })
 

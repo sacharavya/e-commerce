@@ -68,16 +68,13 @@ const ProductScreen = ({ history, match }) => {
   const preorderHandler = () => {
     dispatch(
       createPreOrder({
-        // preorderItem.product: ,
-        //   orderItemsPrice: cart.itemsPrice,
-        //   shippingAddress: cart.shippingAddress,
-        //   paymentMethod: cart.paymentMethod,
-        //   itemsPrice: cart.itemsPrice,
-        //   taxPrice: cart.taxPrice,
-        //   shippingPrice: cart.shippingPrice,
-        //   totalPrice: cart.totalPrice,
+        preorderItems: product.name,
+        preorderItemsPrice: product.price,
+        preorderItemsImage: product.image,
       })
     )
+
+    console.log(createPreOrder)
   }
 
   return (

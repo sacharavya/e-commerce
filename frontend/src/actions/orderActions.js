@@ -18,7 +18,7 @@ import {
   ORDER_DELIVER_REQUEST,
   ORDER_DELIVER_SUCCESS,
   ORDER_DELIVER_FAIL,
-} from '../constants/orderConstatnts'
+} from '../constants/orderConstants'
 
 import { CART_RESET } from '../constants/cartConstants'
 

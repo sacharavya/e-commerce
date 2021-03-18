@@ -5,7 +5,7 @@ import {
   PREORDER_CREATE_SUCCESS,
 } from '../constants/preorderConstants'
 
-export const createPreOrder = (order) => async (dispatch, getState) => {
+export const createPreOrder = (preorder) => async (dispatch, getState) => {
   try {
     dispatch({
       type: PREORDER_CREATE_REQUEST,
@@ -22,7 +22,7 @@ export const createPreOrder = (order) => async (dispatch, getState) => {
       },
     }
 
-    const { data } = await axios.post(`/api/preorders`, order, config)
+    const { data } = await axios.post(`/api/preorders`, preorder, config)
 
     dispatch({
       type: PREORDER_CREATE_SUCCESS,

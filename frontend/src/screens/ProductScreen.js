@@ -41,6 +41,9 @@ const ProductScreen = ({ history, match }) => {
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
 
+  // const preorderCreate = useSelector((state) => state.preorderCreate)
+  // const { preorder } = preorderCreate
+
   useEffect(() => {
     if (successProductReview) {
       alert('review Submitted!')
@@ -68,13 +71,10 @@ const ProductScreen = ({ history, match }) => {
   const preorderHandler = () => {
     dispatch(
       createPreOrder({
-        preorderItems: product.name,
-        preorderItemsPrice: product.price,
-        preorderItemsImage: product.image,
+        user: userInfo._id,
+        product: product._id,
       })
     )
-
-    console.log(createPreOrder)
   }
 
   return (

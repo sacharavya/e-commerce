@@ -7,6 +7,7 @@ import connectDB from './config/db.js'
 import productRoutes from './routes/productRoutes.js'
 import userRoutes from './routes/userRoutes.js'
 import orderRoutes from './routes/orderRoutes.js'
+import categoryRoutes from './routes/categoryRoutes.js'
 import preorderRoutes from './routes/preorderRoutes.js'
 import uploadRoutes from './routes/uploadRoutes.js'
 import { notFound, errorHandler } from './middleware/errorMiddleware.js'
@@ -26,6 +27,7 @@ app.use(express.json())
 app.use('/api/products', productRoutes)
 app.use('/api/users', userRoutes)
 app.use('/api/orders', orderRoutes)
+app.use('/api/category', categoryRoutes)
 app.use('/api/preorders', preorderRoutes)
 app.use('/api/upload', uploadRoutes)
 

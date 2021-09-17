@@ -1,4 +1,7 @@
+import nodemailer from 'nodemailer'
+import dotenv from 'dotenv'
 import asyncHandler from 'express-async-handler'
+import Preorder from '../models/preorderModel.js'
 import Product from '../models/productModel.js'
 
 // @desc Fetch All Products
@@ -43,7 +46,8 @@ const deleteProduct = asyncHandler(async (req, res) => {
     await product.remove()
     res.json({ message: 'Product Removed' })
   } else {
-    image
+    res.status(404)
+    throw new Error('Product not found')
   }
 })
 
@@ -71,15 +75,8 @@ const createProduct = asyncHandler(async (req, res) => {
 // @route PUT /api/products/:id
 // @access Private/admin
 const updateProduct = asyncHandler(async (req, res) => {
-  const {
-    name,
-    price,
-    description,
-    image,
-    brand,
-    category,
-    countInStock,
-  } = req.body
+  const { name, price, description, image, brand, category, countInStock } =
+    req.body
   const product = await Product.findById(req.params.id)
 
   if (product) {
@@ -91,15 +88,52 @@ const updateProduct = asyncHandler(async (req, res) => {
     product.category = category
     product.countInStock = countInStock
 
-    if (product.countInStock == 0) {
-      //find all pre-order records for that item
-      //note reference or make list of the users that ordered that product
-      //add new product
-      //email all the people in the list of the product that they pre-ordered that product
+    const updatedProduct = await product.save()
+    const preorder = await Preorder.find({}).populate('user', 'name email')
+
+    if (preorder) {
+      for (var i = 0; i < preorder.length; i++) {
+        //   console.log(preorder[i].preorderItemsPrice)
+        //   console.log(preorder[i].preorderItems.name)
+        const preorderProduct = preorder[i].preorderItems
+        //   //   console.log(preorderProduct)
+        for (var j = 0; j < preorderProduct.length; j++) {
+          // console.log(preorderProduct[j].name)
+          if (product.name === preorderProduct[j].name) {
+            console.log(preorder[i].user.email)
+            // console.log(preorderProduct[j].name)
+            if (product.countInStock > 0) {
+              dotenv.config()
+              const transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                  user: process.env.EMAIL,
+                  pass: process.env.PASS,
+                },
+              })
+
+              let mailDetails = {
+                from: process.env.EMAIL,
+                to: preorder[i].user.email,
+                subject: `Preorder of ${preorderProduct[j].name}`,
+                text: `Hey, ${preorder[i].user.name}, The product ${preorderProduct[j].name} with price of $${preorderProduct[j].price} is now back in stock, please visit our website sarkshop.herokuapp.com to add it in your cart. Thank you!`,
+              }
+
+              transporter.sendMail(mailDetails, (err, data) => {
+                if (err) {
+                  console.log('Error')
+                } else {
+                  console.log('Email sent')
+                }
+              })
+            }
+          }
+        }
+        //   console.log(preorder[i].user)
+      }
     }
 
-    const updatedProduct = await product.save()
-    res.status(201).json(updatedProduct)
+    res.json(updatedProduct)
   } else {
     res.status(404)
     throw new Error('Product not Found')

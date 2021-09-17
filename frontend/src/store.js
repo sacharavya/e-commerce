@@ -28,7 +28,11 @@ import {
   orderListMyReducer,
   orderListReducer,
 } from './reducers/orderReducers'
-import { preorderCreateReducer } from './reducers/preorderReducers'
+import {
+  preorderReducer,
+  preorderCreateReducer,
+} from './reducers/preorderReducers'
+import { categoryListReducer } from './reducers/categoryReducer'
 
 const reducer = combineReducers({
   productList: productListReducer,
@@ -52,11 +56,17 @@ const reducer = combineReducers({
   orderDeliver: orderDeliverReducer,
   orderListMy: orderListMyReducer,
   orderList: orderListReducer,
+  preorder: preorderReducer,
   preorderCreate: preorderCreateReducer,
+  categoryList: categoryListReducer,
 })
 
 const cartItemsFromStorage = localStorage.getItem('cartItems')
   ? JSON.parse(localStorage.getItem('cartItems'))
+  : []
+
+const preorderItemsFromStorage = localStorage.getItem('preorderItems')
+  ? JSON.parse(localStorage.getItem('preorderItems'))
   : []
 
 const userInfoFromStorage = localStorage.getItem('userInfo')
@@ -71,6 +81,9 @@ const initialState = {
   cart: {
     cartItems: cartItemsFromStorage,
     shippingAddress: shippingAddressFromStorage,
+  },
+  preorder: {
+    preorderItems: preorderItemsFromStorage,
   },
   userLogin: { userInfo: userInfoFromStorage },
 }

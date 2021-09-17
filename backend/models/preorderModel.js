@@ -7,13 +7,22 @@ const preorderSchema = mongoose.Schema(
       required: true,
       ref: 'User',
     },
-    product: {
-      type: mongoose.Schema.Types.ObjectId,
+    preorderItems: [
+      {
+        name: { type: String, required: true },
+        image: { type: String, required: true },
+        price: { type: Number, required: true },
+        product: {
+          type: mongoose.Schema.Types.ObjectId,
+          required: true,
+          ref: 'Product',
+        },
+      },
+    ],
+    preorderItemsPrice: {
+      type: Number,
       required: true,
-      ref: 'Product',
-    },
-    preorderdAt: {
-      type: Date,
+      default: 0.0,
     },
   },
   {

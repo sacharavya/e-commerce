@@ -17,10 +17,11 @@ import {
   listProductDetails,
   createProductReview,
 } from '../actions/productActions'
-import { createPreOrder } from '../actions/preorderActions'
+// import { createPreOrder } from '../actions/preorderActions'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants'
+// import { createPreorder } from '../actions/preorderActions'
 
 const ProductScreen = ({ history, match }) => {
   const [qty, setQty] = useState(1)
@@ -33,13 +34,14 @@ const ProductScreen = ({ history, match }) => {
   const { loading, error, product } = productDetails
 
   const productReviewCreate = useSelector((state) => state.productReviewCreate)
-  const {
-    success: successProductReview,
-    error: errorProductReview,
-  } = productReviewCreate
+  const { success: successProductReview, error: errorProductReview } =
+    productReviewCreate
 
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
+
+  // const preorder = useSelector((state) => state.preorder)
+  // const { preorderItems } = preorder
 
   // const preorderCreate = useSelector((state) => state.preorderCreate)
   // const { preorder } = preorderCreate
@@ -68,13 +70,8 @@ const ProductScreen = ({ history, match }) => {
     )
   }
 
-  const preorderHandler = () => {
-    dispatch(
-      createPreOrder({
-        user: userInfo._id,
-        product: product._id,
-      })
-    )
+  const preorderCartHandler = (id) => {
+    history.push(`/dashboard/preorder/${match.params.id}?`)
   }
 
   return (
@@ -158,7 +155,7 @@ const ProductScreen = ({ history, match }) => {
                   <ListGroup.Item>
                     {product.countInStock < 1 ? (
                       <Button
-                        onClick={preorderHandler}
+                        onClick={preorderCartHandler}
                         className='btn-block rounded'
                         type='button'
                       >

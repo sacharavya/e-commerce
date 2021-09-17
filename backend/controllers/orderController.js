@@ -62,7 +62,6 @@ const getOrderById = asyncHandler(async (req, res) => {
 // @access  Private
 const updateOrderToPaid = asyncHandler(async (req, res) => {
   const order = await Order.findById(req.params.id)
-  const product = await Product.findById(req.params.id)
 
   if (order) {
     order.isPaid = true
